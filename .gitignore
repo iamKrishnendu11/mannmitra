@@ -1,0 +1,16 @@
+# Node
+node_modules
+npm-debug.log
+
+#Env
+server/.env
+client/.env
+
+#Build
+
+build/
+dist/
+.vite
+
+#Logs
+*.log
