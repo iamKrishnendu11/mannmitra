@@ -28,13 +28,32 @@ await connectDB(); // OK if you run Node with ESM and top-level await enabled
 app.use(express.json());
 app.use(cookieParser());
 
-//cors
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+// --- UPDATED CORS CONFIGURATION ---
+// We create an array of allowed domains.
+// This allows both your Localhost (for dev) AND your new Production Domain to work simultaneously.
+const allowedOrigins = [
+  "http://localhost:5173",                        // Local Development
+  "https://mannmitra.algo-rhythm.online",         // Your New Custom Domain
+  "https://www.mannmitra.algo-rhythm.online",     // WWW version (good practice)
+  process.env.CLIENT_URL                          // Fallback for environment variable
+];
+
 app.use(cors({
-  origin: CLIENT_URL,     // must be exact origin when using credentials
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or server-to-server curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log("Blocked by CORS:", origin); // Helpful debug log in Render console
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,      // allow cookies to be sent
   methods: ['GET','POST','PUT','DELETE','OPTIONS']
 }));
+// ----------------------------------
 
 // api routes
 app.get('/', (req, res) => res.send('Server is running'));
