@@ -3,11 +3,7 @@
 import MentalHealthReport from "../models/mentalHealthReport.model.js";
 import { getRecommendations } from "../utils/recommendation.js";
 
-//
-// ──────────────────────────────────────────────────────────────
-//   QUESTIONS (STATIC)
-// ──────────────────────────────────────────────────────────────
-//
+
 const QUESTIONS = [
   {
     question: "How often have you felt nervous or anxious in the past 2 weeks?",
@@ -51,11 +47,6 @@ const QUESTIONS = [
   },
 ];
 
-//
-// ──────────────────────────────────────────────────────────────
-//   HELPERS
-// ──────────────────────────────────────────────────────────────
-//
 
 const normalizeScore = (optionIndex, optionsLength) => {
   if (optionsLength <= 1) return 0;
@@ -66,11 +57,7 @@ export const getQuestions = (req, res) => {
   res.json({ questions: QUESTIONS });
 };
 
-//
-// ──────────────────────────────────────────────────────────────
-//   SUBMIT ASSESSMENT — MAIN CONTROLLER
-// ──────────────────────────────────────────────────────────────
-//
+
 export const submitAssessment = async (req, res) => {
   try {
     const { answers } = req.body;
@@ -79,9 +66,7 @@ export const submitAssessment = async (req, res) => {
       return res.status(400).json({ error: "answers array required" });
     }
 
-    // -------------------------
-    // Build Scored Answers
-    // -------------------------
+    
     const finalAnswers = {};
 
     answers.forEach((ans) => {
@@ -122,11 +107,8 @@ export const submitAssessment = async (req, res) => {
       stress_level,
     });
 
-    //
-    // ───────────────────────────────────────────
+    
     //   GET RECOMMENDATIONS (GEMINI)
-    // ───────────────────────────────────────────
-    //
     let recommendations = [];
 
     try {
@@ -152,12 +134,6 @@ export const submitAssessment = async (req, res) => {
       ];
     }
 
-    //
-    // ───────────────────────────────────────────
-    //   BUILD FINAL REPORT OBJECT
-    // ───────────────────────────────────────────
-    //
-
     const reportData = {
       stress_level,
       anxiety_score: +anxietyScore.toFixed(1),
@@ -168,11 +144,6 @@ export const submitAssessment = async (req, res) => {
       report_date: new Date().toISOString().split("T")[0],
     };
 
-    //
-    // ───────────────────────────────────────────
-    //   SAVE (Mongo OR memory mode)
-    // ───────────────────────────────────────────
-    //
     let saved;
 
     if (process.env.USE_IN_MEMORY_DB === "true") {
@@ -194,11 +165,7 @@ export const submitAssessment = async (req, res) => {
   }
 };
 
-//
-// ──────────────────────────────────────────────────────────────
-//   LIST REPORTS
-// ──────────────────────────────────────────────────────────────
-//
+
 export const listReports = async (req, res) => {
   try {
     if (process.env.USE_IN_MEMORY_DB === "true") {

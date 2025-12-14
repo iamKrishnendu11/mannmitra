@@ -1,5 +1,4 @@
 // controllers/auth.controller.js
-// Modified logout to reliably clear the refresh cookie (match the attributes used when setting it)
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
@@ -95,11 +94,8 @@ export const login = async (req, res) => {
   }
 };
 
-// --- NEW: logout that reliably clears cookie using same attributes/path ---
 export const logout = async (req, res) => {
   try {
-    // Clear the refresh token cookie with the same path/sameSite/secure attrs used to set it.
-    // Using sameSite:'none' and path:'/' prevents the browser from keeping the cookie.
     res.clearCookie('refreshToken', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',

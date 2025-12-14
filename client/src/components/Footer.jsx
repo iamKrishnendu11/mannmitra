@@ -1,4 +1,5 @@
 // src/components/Footer.jsx
+
 import React from 'react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -20,7 +21,8 @@ const Footer = () => {
               To protect the little hearts and help India reach its destiny. Your companion for mental wellness and holistic growth.
             </p>
             
-            {/* SOCIAL LINKS UPDATED HERE */}
+            {/* SOCIAL MEDIA LINKS ARE HERE */}
+
             <div className="flex space-x-4">
               <SocialIcon 
                 Icon={Facebook} 
@@ -41,7 +43,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Navigation Links */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-white">Quick Links</h4>
             <ul className="space-y-2 text-sm">
@@ -53,7 +55,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Services We Offer */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-white">Services</h4>
             <ul className="space-y-2 text-sm">
@@ -121,7 +123,7 @@ const FooterLink = ({ to, text }) => (
   </li>
 );
 
-// Updated SocialIcon to accept 'href'
+// SocialIcon to accept 'href'
 const SocialIcon = ({ Icon, href }) => (
   <a 
     href={href} 

@@ -20,7 +20,6 @@ export const createTrack = async (req, res) => {
       tags: tags ? (Array.isArray(tags) ? tags : String(tags).split(',').map(t => t.trim())) : []
     });
 
-    // if file uploaded via multer -> store local url
     if (req.file) {
       audio.audio_url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
     } else if (req.body.audio_url_remote) {
@@ -29,7 +28,6 @@ export const createTrack = async (req, res) => {
       audio.audio_url = req.body.audio_url; // allow absolute url too
     }
 
-    // optional thumbnail upload
     if (req.files?.thumbnail?.[0]) {
       const t = req.files.thumbnail[0];
       audio.thumbnail_url = `${req.protocol}://${req.get('host')}/uploads/${t.filename}`;
@@ -97,7 +95,7 @@ export const updateTrack = async (req, res) => {
           const old = track.audio_url.split('/uploads/').pop();
           const oldPath = path.resolve(process.cwd(), 'uploads', old);
           if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
-        } catch (e) { /* ignore */ }
+        } catch (e) { }
       }
       track.audio_url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
     }

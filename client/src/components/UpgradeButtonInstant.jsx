@@ -1,6 +1,6 @@
 // src/components/UpgradeButtonInstant.jsx
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext.jsx';
 
 export default function UpgradeButtonInstant({ className = '' }) {
   const [loading, setLoading] = useState(false);

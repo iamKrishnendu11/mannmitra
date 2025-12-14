@@ -1,3 +1,4 @@
+// src/pages/Assessment.jsx
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -6,7 +7,7 @@ import { FileText, CheckCircle, TrendingUp, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 const questions = [
-  // ... same questions as before
+  // ... same questions for assessment
   {
     question: 'How often have you felt nervous or anxious in the past 2 weeks?',
     category: 'anxiety',
@@ -51,7 +52,6 @@ const questions = [
 
 export default function Assessment() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  // keep answers as you had — but we'll convert to backend format when submitting
   const [answers, setAnswers] = useState({});
   const [isComplete, setIsComplete] = useState(false);
   const [report, setReport] = useState(null);
@@ -85,27 +85,23 @@ const submitToBackend = async (finalAnswers) => {
   // safe environment detection (works for Vite, CRA, or fallback to same-origin)
   const API_BASE = (() => {
     try {
-      // Vite: import.meta.env.VITE_API_URL
-      // avoid referencing the bare `import` identifier (reserved) — check import.meta instead
       if (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_API_URL) {
         return import.meta.env.VITE_API_URL;
       }
     } catch (e) {
-      // ignore
+      
     }
-    // CRA: process.env.REACT_APP_API_URL (only available at build-time, so guard typeof)
     if (typeof process !== "undefined" && process.env && process.env.REACT_APP_API_URL) {
       return process.env.REACT_APP_API_URL;
     }
-    // allow a runtime override via window (useful for debugging)
+    // allow a runtime override via window
     if (typeof window !== "undefined" && window.__API_URL__) {
       return window.__API_URL__;
     }
-    // default: empty -> use same origin
     return "";
   })();
 
-  // build final URL (avoid double slash)
+  
   const base = API_BASE ? API_BASE.replace(/\/$/, "") : "";
   const url = `${base}/api/mentalhealth/submit`;
 

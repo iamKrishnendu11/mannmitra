@@ -18,7 +18,6 @@ const router = express.Router();
 // multer setup for local storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // ensure 'uploads' folder exists or adjust path as needed
     const uploadDir = process.env.UPLOAD_DIR || path.join(process.cwd(), 'uploads');
     cb(null, uploadDir);
   },
@@ -31,12 +30,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ 
   storage, 
-  limits: { fileSize: 30 * 1024 * 1024 } // 30MB limit
+  limits: { fileSize: 30 * 1024 * 1024 }
 });
-
-// --- ROUTES ---
-
-// Public list, but actions require auth
 router.get('/', requireAuth, listPosts); 
 router.post('/', requireAuth, upload.single('media'), createPost); 
 

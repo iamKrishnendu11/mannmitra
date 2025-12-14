@@ -1,3 +1,4 @@
+// src/pages/About.jsx
 import React from 'react';
 import { 
   Heart, 
@@ -127,7 +128,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Location / Contact Mini Section */}
+        {/* Location & Contact Section */}
         <div className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>

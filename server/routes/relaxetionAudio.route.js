@@ -4,7 +4,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { requireAuth } from '../middlewares/auth.middleware.js'; // make sure this path is correct for your project
+import { requireAuth } from '../middlewares/auth.middleware.js';
 
 import {
   createTrack,
@@ -13,15 +13,12 @@ import {
   updateTrack,
   deleteTrack,
   likeTrack
-} from '../controllers/relaxetionAudio.controller.js'; // controller filename must match
+} from '../controllers/relaxetionAudio.controller.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Choose an uploads dir relative to server folder (robust regardless of cwd)
 const uploadDir = process.env.UPLOAD_DIR || path.join(__dirname, '..', 'uploads');
-
-// ensure directory exists
 fs.mkdirSync(uploadDir, { recursive: true });
 
 const storage = multer.diskStorage({
@@ -32,13 +29,13 @@ const storage = multer.diskStorage({
     cb(null, `${base}${ext}`);
   }
 });
-const upload = multer({ storage, limits: { fileSize: 100 * 1024 * 1024 } }); // 100MB
+const upload = multer({ storage, limits: { fileSize: 100 * 1024 * 1024 } }); 
 
 const router = express.Router();
 
 // endpoints
 router.get('/', listTracks);
-router.post('/', requireAuth, upload.single('audio'), createTrack); // field name: 'audio'
+router.post('/', requireAuth, upload.single('audio'), createTrack); 
 router.get('/:id', requireAuth, getTrack);
 router.put('/:id', requireAuth, upload.single('audio'), updateTrack);
 router.delete('/:id', requireAuth, deleteTrack);

@@ -11,11 +11,9 @@ const connectDB = async () => {
 
   try {
     await mongoose.connect(uri, {
-      // options
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      // bufferTimeoutMS controls how long operations will buffer (default 10000)
-      bufferTimeoutMS: 20000 // optional: make it a bit longer while debugging
+      bufferTimeoutMS: 20000
     });
 
     mongoose.connection.on('connected', () => console.log('MongoDB connected'));
@@ -25,7 +23,6 @@ const connectDB = async () => {
     console.log('Mongoose connection established');
   } catch (err) {
     console.error('Failed to connect to MongoDB:', err);
-    // throw so server startup fails and you see the error immediately
     throw err;
   }
 };

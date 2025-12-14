@@ -1,12 +1,5 @@
 // backend/controllers/chat.controller.js
-import { generateWithGemini, __getCachedModel } from "../utils/gemini.js";
-
-/**
- * POST /api/chat
- * body: { messages: [{ role: 'user'|'assistant'|'system', content: '...' }, ...] }
- *
- * Returns: { reply: string }
- */
+import { generateWithGemini, __getCachedModel } from "../utils/gemini.js"
 export const handleChat = async (req, res) => {
   try {
     const { messages } = req.body;
@@ -31,7 +24,6 @@ Answer in 2-4 short sentences. If the user expresses self-harm, suicide, or immi
 Do NOT provide medical diagnosis. Encourage professional help when appropriate.
 `.trim();
 
-    // Keep a short context window
     const recent = messages.slice(-12);
     const modelMessages = [
       { role: "system", content: systemPrompt },
@@ -41,17 +33,14 @@ Do NOT provide medical diagnosis. Encourage professional help when appropriate.
     // Call the model wrapper
     const modelResult = await generateWithGemini(modelMessages);
 
-    // debug logs to help correlate failures (server-only)
+    // debug logs to help correlate failures
     try {
       console.log("[Chat] cachedModel:", __getCachedModel?.() || null);
       console.log("[Chat] modelResult type:", typeof modelResult);
       console.log("[Chat] modelResult preview:", (typeof modelResult === "string") ? modelResult.slice(0,200) : JSON.stringify(modelResult).slice(0,200));
     } catch (e) {
-      // ignore logging errors
     }
 
-    // Normalise different return shapes:
-    // Accept string, { content: string }, or { reply: string }
     let replyText = null;
     if (typeof modelResult === "string") replyText = modelResult;
     else if (modelResult && typeof modelResult === "object") {
@@ -64,7 +53,6 @@ Do NOT provide medical diagnosis. Encourage professional help when appropriate.
 
     // If model did not return text, use a moderate server-side fallback
     if (!replyText || typeof replyText !== "string") {
-      // Attempt a rule-based empathetic fallback using last user text
       const lastUser = [...recent].reverse().find(m => m.role === "user")?.content || "";
       const lower = lastUser.toLowerCase();
       let safeFallback = "Thanks for sharing — I hear you. Tell me more if you like.";
@@ -75,7 +63,6 @@ Do NOT provide medical diagnosis. Encourage professional help when appropriate.
         safeFallback = "I'm sorry you're feeling that way. Would you like to tell me what happened or how long you've been feeling like this?";
       }
 
-      // include server log hint (not sent to client) — still return just the fallback text
       console.log("[Chat] Returning server-side fallback to user");
       return res.json({ reply: safeFallback });
     }

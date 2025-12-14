@@ -20,10 +20,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 
-/**
- * Layout: ONLY handles Header and Footer.
- * AuthProvider is now moved up to wrapping the RouterProvider.
- */
+
 const Layout = () => {
   return (
     <>
@@ -61,8 +58,6 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  // Wrap the entire RouterProvider with AuthProvider
-  // This ensures Login and Register also have access to useAuth()
   return (
     <AuthProvider>
       <RouterProvider router={router} />

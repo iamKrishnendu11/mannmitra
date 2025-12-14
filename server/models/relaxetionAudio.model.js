@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 const RelaxetionAudioSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, default: '' },
-  duration_seconds: { type: Number, default: 0 }, // store seconds
+  duration_seconds: { type: Number, default: 0 },
   duration_minutes: { type: Number, default: 0 },
-  audio_url: { type: String, required: true }, // absolute or relative URL
+  audio_url: { type: String, required: true },
   thumbnail_url: { type: String, default: null },
   type: { type: String, default: 'audio' },
   tags: [{ type: String }],

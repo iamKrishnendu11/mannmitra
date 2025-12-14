@@ -1,10 +1,4 @@
-import Assessment from "@/pages/Assessment";    
-import Community from "@/pages/Community";
-import Diary from "@/pages/Diary";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import Rewards from "@/pages/Rewards";
-import TermsOfService from "@/pages/TermsOfService";
-
+// src/utils/index.js
 const pageRoutes = {
   Home: '/',
   Dashboard: '/dashboard',

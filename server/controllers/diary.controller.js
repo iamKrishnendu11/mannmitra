@@ -2,7 +2,6 @@
 import DiaryEntry from '../models/diary.model.js';
 import path from 'path';
 import fs from 'fs';
-// IMPORT REWARD HELPER
 import { awardDiaryCoins } from './userProgress.controller.js';
 
 export const createEntry = async (req, res) => {
@@ -37,7 +36,6 @@ export const createEntry = async (req, res) => {
     await entry.save();
 
     // --- REWARD LOGIC ---
-    // Award coins for diary entry (Premium only, capped daily)
     awardDiaryCoins(req.user._id);
 
     return res.status(201).json(entry);
@@ -154,8 +152,6 @@ export const deleteEntry = async (req, res) => {
     }
 
     // --- FIX FOR DEPRECATED METHOD ---
-    // Old: await entry.remove();
-    // New:
     await DiaryEntry.deleteOne({ _id: entry._id });
     
     return res.json({ message: 'Deleted' });

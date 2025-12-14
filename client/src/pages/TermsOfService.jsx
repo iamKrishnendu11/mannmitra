@@ -1,3 +1,4 @@
+// src/pages/TermsOfService.jsx
 import React from 'react';
 import { AlertTriangle, Book, Scale, HeartHandshake } from 'lucide-react';
 

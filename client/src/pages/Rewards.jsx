@@ -9,7 +9,7 @@ import {
   Book, 
   StickyNote, 
   Shirt, 
-  Check,      // Added Check icon for "Claimed" state
+  Check,    
   Lock,
   Sparkles
 } from 'lucide-react';
@@ -33,7 +33,7 @@ export default function Rewards() {
 
   const currentCoins = progress?.coins || 0;
 
-  // Static list of rewards
+  // list of rewards
   const rewards = [
     { 
       id: 'r_pen', 
@@ -83,11 +83,6 @@ export default function Rewards() {
     setIsRedeeming(item.id);
 
     try {
-      // 1. Call API to deduct coins
-      // Using a generic 'update' or specific 'redeem' endpoint. 
-      // If you don't have a specific backend route for redemption yet, 
-      // we can assume the 'complete' or 'update' pattern.
-      // Ideally, you should have: POST /api/progress/redeem
       
       const res = await fetch(`${API_BASE}/api/progress/redeem`, {
         method: 'POST',

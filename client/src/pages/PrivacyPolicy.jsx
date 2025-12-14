@@ -1,3 +1,4 @@
+// src/pages/PrivacyPolicy.jsx
 import React from 'react';
 import { Shield, Lock, Eye, FileText, Mail } from 'lucide-react';
 

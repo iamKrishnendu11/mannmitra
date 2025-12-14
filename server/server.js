@@ -1,5 +1,5 @@
-// server.js — put this exactly at the project entry (where you run node)
-import "dotenv/config"; // ← MUST be first so env is available to all imports
+// server.js
+import "dotenv/config";
 
 import express from 'express';
 import cors from 'cors';
@@ -16,41 +16,37 @@ import communityRoutes from './routes/community.route.js';
 
 import relaxetionAudioRoutes from './routes/relaxetionAudio.route.js';
 
-// Import the cached model inspector
 import { __getCachedModel } from './utils/gemini.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-await connectDB(); // OK if you run Node with ESM and top-level await enabled
+await connectDB();
 
 // middleware
 app.use(express.json());
 app.use(cookieParser());
 
-// --- UPDATED CORS CONFIGURATION ---
-// We create an array of allowed domains.
-// This allows both your Localhost (for dev) AND your new Production Domain to work simultaneously.
+
 const allowedOrigins = [
-  "http://localhost:5173",                        // Local Development
-  "https://mannmitra.algo-rhythm.online",         // Your New Custom Domain
-  "https://www.mannmitra.algo-rhythm.online",     // WWW version (good practice)
-  process.env.CLIENT_URL                          // Fallback for environment variable
+  "http://localhost:5173",                      
+  "https://mannmitra.algo-rhythm.online",         
+  "https://www.mannmitra.algo-rhythm.online",    
+  process.env.CLIENT_URL                       
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or server-to-server curl requests)
     if (!origin) return callback(null, true);
     
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log("Blocked by CORS:", origin); // Helpful debug log in Render console
+      console.log("Blocked by CORS:", origin); 
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true,      // allow cookies to be sent
+  credentials: true,     
   methods: ['GET','POST','PUT','DELETE','OPTIONS']
 }));
 // ----------------------------------
@@ -67,7 +63,6 @@ app.use('/api/classes', classesRoute);
 app.use('/api/community', communityRoutes);
 app.use('/api/audio', relaxetionAudioRoutes);
 
-// debug route to inspect cached model (server-only)
 app.get('/api/debug/gemini', (req, res) => {
   try {
     const cached = __getCachedModel?.() || null;

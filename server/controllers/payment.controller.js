@@ -6,7 +6,6 @@ dotenv.config();
 // Grant premium to currently authenticated user (DEV / no payment)
 export const instantUpgrade = async (req, res) => {
   try {
-    // auth middleware must set req.user with { id, email, ... }
     const userId = req.user && req.user.id;
     const userEmail = req.user && req.user.email;
     if (!userId) return res.status(401).json({ success: false, message: 'Unauthorized' });

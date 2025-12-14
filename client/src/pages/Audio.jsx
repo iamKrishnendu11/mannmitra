@@ -102,7 +102,6 @@ export default function Audio() {
     try {
       await audio.play();
       setIsPlaying(true);
-      // optional: award a small coin immediately or after a few seconds
       // we'll award after 10 seconds as example if not already awarded
       const awardTimeout = setTimeout(() => {
         rewardCoinsForTrack(track);
@@ -175,22 +174,7 @@ export default function Audio() {
 
   const filtered = tracks.filter(t => filterType === 'all' ? true : (t.tags || []).includes(filterType));
 
-  // premium gate for entire page (optionally keep as in original)
-  // If you want to restrict the whole audio library to premium users, uncomment:
-  /*
-  if (progress?.subscription_status !== 'premium') {
-    return (
-      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-6">
-        <Card className="p-12 text-center rounded-2xl">
-          <Crown className="h-16 w-16 text-purple-600 mx-auto mb-6" />
-          <h2 className="text-2xl font-bold">Premium Feature</h2>
-          <p className="mt-2 text-gray-600">Upgrade to premium to access relaxation audio</p>
-          <Button onClick={() => window.location.href = '/Dashboard'} className="mt-6">Upgrade</Button>
-        </Card>
-      </div>
-    );
-  }
-  */
+  
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-br from-purple-50 via-white to-beige-50 py-8 px-4">

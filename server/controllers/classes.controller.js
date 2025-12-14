@@ -1,11 +1,7 @@
 // controllers/classes.controller.js
 import YogaClass from '../models/class.model.js';
 
-/**
- * List classes
- * GET /api/classes
- * optional query: ?type=&limit=&search=
- */
+
 export const listClasses = async (req, res) => {
   try {
     const { type, limit = 50, search } = req.query;
@@ -24,10 +20,6 @@ export const listClasses = async (req, res) => {
   }
 };
 
-/**
- * Get single class
- * GET /api/classes/:id
- */
 export const getClassById = async (req, res) => {
   try {
     const item = await YogaClass.findById(req.params.id);
@@ -39,11 +31,7 @@ export const getClassById = async (req, res) => {
   }
 };
 
-/**
- * Create class
- * POST /api/classes
- * Protected: requireAuth (and optionally admin)
- */
+
 export const createClass = async (req, res) => {
   try {
     const payload = req.body;
@@ -58,11 +46,7 @@ export const createClass = async (req, res) => {
   }
 };
 
-/**
- * Update class
- * PUT /api/classes/:id
- * Protected: requireAuth (and optionally admin)
- */
+
 export const updateClass = async (req, res) => {
   try {
     const updated = await YogaClass.findByIdAndUpdate(req.params.id, req.body, {
@@ -77,11 +61,7 @@ export const updateClass = async (req, res) => {
   }
 };
 
-/**
- * Delete class
- * DELETE /api/classes/:id
- * Protected: requireAuth (and optionally admin)
- */
+
 export const deleteClass = async (req, res) => {
   try {
     const removed = await YogaClass.findByIdAndDelete(req.params.id);

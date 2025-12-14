@@ -1,6 +1,6 @@
 // src/api/base44Client.js
 
-export const base44 = {
+export const api = {
   auth: {
     async me() {
       // mock user

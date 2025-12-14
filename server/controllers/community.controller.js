@@ -2,13 +2,9 @@
 import CommunityPost from '../models/community.model.js';
 import path from 'path';
 import fs from 'fs';
-// IMPORT REWARD HELPER
 import { awardCommunityCoins } from './userProgress.controller.js';
 
-/**
- * Helper: resolve id whether value is a string or a populated object.
- * Returns trimmed string id or null.
- */
+
 function resolveId(v) {
   if (!v) return null;
   if (typeof v === 'object') {
@@ -41,8 +37,6 @@ export const createPost = async (req, res) => {
     await post.save();
 
     // --- REWARD LOGIC ---
-    // Award coins for posting (Premium only, capped daily)
-    // We don't await this to keep response fast
     awardCommunityCoins(req.user._id);
 
     return res.status(201).json(post);
@@ -177,7 +171,6 @@ export const likePost = async (req, res) => {
   }
 };
 
-// THIS IS THE CRITICAL MISSING FUNCTION
 export const commentPost = async (req, res) => {
   try {
     const { text } = req.body;

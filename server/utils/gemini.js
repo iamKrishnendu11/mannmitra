@@ -11,10 +11,7 @@ if (apiKey) {
   client = new GoogleGenerativeAI(apiKey);
 }
 
-// Cache the working model id so we don't probe on every request
 let cachedModel = null;
-
-// Ordered candidate models to try (add/remove as needed)
 const CANDIDATE_MODELS = [
   "gemini-2.0-flash",
   "gemini-1.5-pro",
@@ -24,7 +21,6 @@ const CANDIDATE_MODELS = [
   "text-bison-001"
 ];
 
-// Improved exponential-backoff retry helper (handles transient 429/503)
 async function retry(fn, retries = 5, delay = 300, maxDelay = 2000) {
   try {
     return await fn();
@@ -40,7 +36,6 @@ async function retry(fn, retries = 5, delay = 300, maxDelay = 2000) {
   }
 }
 
-// Probe a single model with a tiny prompt to check availability
 async function probeModel(modelId) {
   if (!client) return false;
   try {
@@ -61,7 +56,6 @@ async function probeModel(modelId) {
   }
 }
 
-// Find and cache a working model by probing candidates
 async function findWorkingModel() {
   if (!client) return null;
   if (cachedModel) return cachedModel;
@@ -91,15 +85,11 @@ async function switchToAnotherModel(current) {
         return m;
       }
     } catch (e) {
-      // ignore and continue
     }
   }
-  // If none worked, clear cache so findWorkingModel will re-probe next time
   cachedModel = null;
   return null;
 }
-
-// Main exported function
 export async function generateWithGemini(messages) {
   if (!client) {
     console.error("[Gemini] Error: Client not initialized. Missing API Key.");
@@ -115,23 +105,19 @@ export async function generateWithGemini(messages) {
   const prompt = messages.map(m => `${m.role.toUpperCase()}: ${m.content}`).join("\n") + "\nAssistant:";
 
   try {
-    // Use retry wrapper to handle transient errors like 429/503
     const model = client.getGenerativeModel({ model: modelId });
     const result = await retry(() => model.generateContent(prompt), 5, 300);
     const response = await result.response;
 
-    // handle different shapes of response
     if (response) {
       const text = (typeof response.text === "function") ? response.text() : (response.text || "");
       return text.toString();
     }
 
-    // If no usable response, throw to trigger fallback below
     throw new Error("Empty response from model");
   } catch (err) {
     console.error("[Gemini] Generation Error:", err);
 
-    // If rate limited / overloaded, try switching to a different model and attempt once more
     if (err?.status === 429 || err?.status === 503 || (err?.message && /rate limit|overload|overloaded|service unavailable/i.test(err.message))) {
       console.warn("[Gemini] Rate-limited/overloaded. Attempting to switch to another candidate model...");
       const fallback = await switchToAnotherModel(modelId);
@@ -153,24 +139,21 @@ export async function generateWithGemini(messages) {
       }
     }
 
-    // For 401/403 unauthorized, do not retry automatically
+
     if (err?.status === 401 || err?.status === 403) {
       console.error("[Gemini] Authorization error. Check GEMINI_API_KEY and project permissions.");
       return "I am having trouble processing that right now. Could you ask me something else?";
     }
 
-    // If the model now appears invalid (404), clear cache so we re-detect next time
     if (err?.status === 404 || (err?.message && /not found|is not found|not supported/i.test(err.message))) {
       console.warn("[Gemini] Cached model appears unsupported. Clearing cache to re-probe on next request.");
       cachedModel = null;
     }
 
-    // Default user-facing fallback
     return "I am having trouble processing that right now. Could you ask me something else?";
   }
 }
 
-// small helper for server debug endpoint
 export function __getCachedModel() {
   return cachedModel;
 }

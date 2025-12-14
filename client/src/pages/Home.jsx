@@ -9,8 +9,8 @@ import {
   Video, Gift, Sparkles, Check, ArrowRight, Star
 } from 'lucide-react';
 
-import UpgradeButtonInstant from '@/components/UpgradeButtonInstant';
-import { useAuth } from '../contexts/AuthContext';
+import UpgradeButtonInstant from '@/components/UpgradeButtonInstant.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
 
 export default function Home() {
   const { user, progress } = useAuth();

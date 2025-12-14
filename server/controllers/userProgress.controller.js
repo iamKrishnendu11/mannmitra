@@ -3,7 +3,6 @@ import UserProgress from '../models/userProgress.model.js';
 import User from '../models/user.model.js';
 import YogaClass from '../models/class.model.js';
 
-// --- HELPER: Check if a date is today ---
 const isToday = (date) => {
   if (!date) return false;
   const today = new Date();
@@ -36,26 +35,23 @@ const ensureDailyTracking = (progress) => {
   return progress;
 };
 
-// --- NEW HELPER: Add Transaction to History ---
+// --- HELPER: Add Transaction to History ---
 const addHistory = (progress, type, amount, description) => {
   if (!progress.history) progress.history = [];
   
   progress.history.push({
-    type,        // 'earned' or 'redeemed'
+    type,      
     amount,
     description,
     date: new Date()
   });
 
-  // Optional: Keep history manageable (last 50 entries)
   if (progress.history.length > 50) {
     progress.history = progress.history.slice(-50);
   }
 };
 
-/**
- * Create progress (Internal or Initial)
- */
+
 export const createProgress = async (req, res) => {
   try {
     const { user_email, ...rest } = req.body;
@@ -66,7 +62,7 @@ export const createProgress = async (req, res) => {
 
     const user = await User.findOne({ email: user_email });
     const progress = new UserProgress({ user_email, user: user?._id, ...rest });
-    ensureDailyTracking(progress); // initialize structure
+    ensureDailyTracking(progress);
     await progress.save();
     return res.json(progress);
   } catch (err) {
@@ -75,9 +71,7 @@ export const createProgress = async (req, res) => {
   }
 };
 
-/**
- * Get progress + HANDLE DAILY LOGIN REWARD + STREAK LOGIC
- */
+
 export const getProgress = async (req, res) => {
   try {
     const { user_email } = req.query;
@@ -90,7 +84,6 @@ export const getProgress = async (req, res) => {
     }
 
     if (!progress) {
-      // If asking for list (admin)
       if (!user_email && !req.user) {
         const list = await UserProgress.find({}).lean();
         return res.json(list);
@@ -98,7 +91,6 @@ export const getProgress = async (req, res) => {
       return res.json(null);
     }
 
-    // 1. Ensure data structure is safe
     ensureDailyTracking(progress);
 
     // 2. --- STREAK LOGIC ---
@@ -146,9 +138,7 @@ export const getProgress = async (req, res) => {
   }
 };
 
-/**
- * Update progress by id
- */
+
 export const updateProgress = async (req, res) => {
   try {
     const id = req.params.id;
@@ -189,9 +179,7 @@ export const updateByEmail = async (req, res) => {
   }
 };
 
-/**
- * Mark class completed + Add Coins (Premium Only) + Log History
- */
+
 export const completeClass = async (req, res) => {
   try {
     const userId = req.user && (req.user._id || req.user.id);
@@ -240,9 +228,6 @@ export const completeClass = async (req, res) => {
   }
 };
 
-/**
- * Redeem a Reward + Log History + Permanent "Claimed" State
- */
 export const redeemReward = async (req, res) => {
   try {
     const userId = req.user._id; 
@@ -258,7 +243,7 @@ export const redeemReward = async (req, res) => {
       return res.status(404).json({ message: 'User progress not found' });
     }
 
-    // Initialize array if it doesn't exist (safety check)
+
     if (!progress.redeemed_rewards) {
         progress.redeemed_rewards = [];
     }
@@ -281,12 +266,10 @@ export const redeemReward = async (req, res) => {
     addHistory(progress, 'redeemed', cost, `Redeemed: ${itemName}`);
     
     await progress.save();
-
-    // 4. Return updated data
     return res.json({ 
       success: true, 
       message: `Redeemed ${itemName || 'item'} successfully!`,
-      progress // Return the full progress object (includes updated history & coins)
+      progress
     });
 
   } catch (err) {
@@ -295,25 +278,13 @@ export const redeemReward = async (req, res) => {
   }
 };
 
-// =========================================================
-// EXPORTED HELPERS (Call these from Community/Diary controllers)
-// =========================================================
-
-/**
- * Award 5 coins for Community Post (Cap 10/day)
- * Only for Premium Users
- */
 export const awardCommunityCoins = async (userId) => {
   try {
     const progress = await UserProgress.findOne({ user: userId });
     
-    // 1. Basic Checks
     if (!progress || progress.subscription_status !== 'premium') return;
-
-    // 2. Ensure Structure
     ensureDailyTracking(progress);
 
-    // 3. Reset if new day
     const lastDate = progress.daily_tracking.community_last_date ? new Date(progress.daily_tracking.community_last_date) : null;
     if (!isToday(lastDate)) {
       progress.daily_tracking.community_coins_earned = 0;
@@ -337,10 +308,7 @@ export const awardCommunityCoins = async (userId) => {
   }
 };
 
-/**
- * Award 5 coins for Diary Entry (Cap 10/day)
- * Only for Premium Users
- */
+
 export const awardDiaryCoins = async (userId) => {
   try {
     const progress = await UserProgress.findOne({ user: userId });

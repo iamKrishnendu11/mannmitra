@@ -11,7 +11,7 @@ import { BookOpen, Plus, Calendar, Smile, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
 import { useAuth } from '../contexts/AuthContext';
 
-// DEV helper image (local path you uploaded) — remove for production
+// DEV helper image
 const DEV_IMAGE_URL = '/mnt/data/Screenshot 2025-11-22 012601.png';
 
 export default function Diary() {
@@ -33,7 +33,6 @@ export default function Diary() {
   const [isSaving, setIsSaving] = useState(false);
   const [audioFile, setAudioFile] = useState(null);
 
-  // Vite env (must start with VITE_)
   const API_BASE = import.meta.env.VITE_API_URL || '';
 
   useEffect(() => {
@@ -148,7 +147,7 @@ export default function Diary() {
       form.append('gratitude_items', JSON.stringify(newEntry.gratitude_items));
       if (audioFile) form.append('audio', audioFile);
 
-      const headers = getAuthHeader(); // IMPORTANT: do not include Content-Type
+      const headers = getAuthHeader();
       const url = `${API_BASE}/api/diary${editingEntry ? `/${editingEntry._id}` : ''}`;
       const method = editingEntry ? 'PUT' : 'POST';
 

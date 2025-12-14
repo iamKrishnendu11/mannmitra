@@ -13,7 +13,7 @@ const API_BASE = import.meta.env.VITE_API_BASE;
 const fallbackScreenshot = 'https://placehold.co/600x400/e2e8f0/94a3b8?text=Class+Image';
 
 export default function Classes() {
-  // ✅ FIX 1: Get 'accessToken' from useAuth()
+  //Get 'accessToken' from useAuth()
   const { user, accessToken, progress, setProgress, createProgressForUser, refresh } = useAuth();
   const [classes, setClasses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -100,7 +100,7 @@ export default function Classes() {
         return;
       }
 
-      // ✅ FIX 2: Use accessToken from useAuth, not localStorage manually
+      // Use accessToken from useAuth
       const body = { classId };
       const res = await fetch(`${API_BASE}/api/progress/complete`, {
         method: 'POST',

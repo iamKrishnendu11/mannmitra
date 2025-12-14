@@ -9,8 +9,7 @@ import {
   Crown, Heart, Target
 } from 'lucide-react';
 import { toast } from 'sonner';
-import { useAuth } from '../contexts/AuthContext';
-// IMPORT THE NEW MODAL HERE
+import { useAuth } from '../contexts/AuthContext.jsx';
 import CoinHistoryModal from '../components/CoinHistoryModal';
 
 export default function Dashboard() {
@@ -196,7 +195,7 @@ export default function Dashboard() {
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           
-          {/* Total Coins Card - CLICKABLE NOW */}
+          {/* Total Coins Card */}
           <div 
             onClick={() => setShowHistory(true)} 
             className="cursor-pointer group"

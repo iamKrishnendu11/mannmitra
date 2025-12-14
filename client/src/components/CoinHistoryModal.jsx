@@ -1,4 +1,5 @@
 // src/components/CoinHistoryModal.jsx
+
 import React from 'react';
 import {
   Dialog,
@@ -11,6 +12,7 @@ import { ArrowDownLeft, ArrowUpRight, History } from 'lucide-react';
 
 export default function CoinHistoryModal({ isOpen, onClose, history = [] }) {
   // Sort by date (newest first)
+  
   const sortedHistory = [...history].sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (

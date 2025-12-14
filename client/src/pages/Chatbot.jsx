@@ -58,16 +58,12 @@ export default function Chatbot() {
     synthesisRef.current.speak(u);
   };
 
-  // --- FIXED URL FUNCTION ---
   const getChatUrl = () => {
-    // If you have a .env file, this ensures we append /api/chat correctly
     if (import.meta.env?.VITE_API_BASE) {
-      // Remove trailing slash if present to avoid double slashes
       const base = import.meta.env.VITE_API_BASE.replace(/\/$/, "");
       return `${base}/api/chat`;
     }
     
-    // Default fallback for local development
     return 'http://localhost:3000/api/chat';
   };
 

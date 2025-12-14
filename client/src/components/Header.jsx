@@ -1,3 +1,4 @@
+// src/components/Footer.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '../utils/index.js';

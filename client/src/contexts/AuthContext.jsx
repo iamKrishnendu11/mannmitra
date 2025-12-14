@@ -1,3 +1,4 @@
+// src/contexts/AuthContext.jsx
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import * as api from '../services/authApi.js';
 import * as progressApi from '../services/progressApi.js';
@@ -157,9 +158,9 @@ export function AuthProvider({ children }) {
     progress,
     loading,
     signup,
-    signin,          // Used by Login.jsx
-    signout,         // The actual function
-    logout: signout, // Alias for Header.jsx
+    signin,          
+    signout,         
+    logout: signout,
     updateProgress,
     createProgressForUser,
     setProgress,

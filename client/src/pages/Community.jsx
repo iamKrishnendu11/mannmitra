@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Heart, MessageCircle, Upload, Plus, Users } from 'lucide-react';
 import { toast } from 'sonner';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext.jsx';
 
 export default function Community() {
   const { user, accessToken } = useAuth();
@@ -236,7 +236,6 @@ export default function Community() {
     setShowCreatePost(true);
   };
 
-  // --------- helper for robust id comparison & myPosts filter ----------
   function resolveId(val) {
     if (!val) return null;
     if (typeof val === 'object') {
