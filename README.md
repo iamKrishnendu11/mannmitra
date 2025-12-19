@@ -1,149 +1,121 @@
-# Mann Mitra Architecture
+# Mannmitra – Mental Health Support Platform
 
-Mann Mitra is a full-stack mental health platform that provides AI-powered chatbot support, diary tracking, assessments, community features, and relaxation audio. The system is split into a Node.js/Express backend and a React + Vite frontend.
+Mannmitra is a comprehensive mental health support platform that provides AI-powered chatbot assistance, journaling, assessments, community features, and relaxation audio. The project ships with a fully themed React experience (Tailwind + shadcn/ui) plus a production-ready Node.js/Express backend that handles JWT auth, MongoDB persistence, and Google Gemini integration.
 
----
+## ✨ Feature Highlights
+- Unified dashboard with progress tracking, assessment results, and personalized recommendations.
+- Dedicated pages for chatbot, diary, assessments, community, classes, and relaxation audio.
+- Auth flow with signup/login, JWT tokens, protected routes, and secure API endpoints.
+- AI chatbot powered by Google Gemini for conversational support.
+- Community features for peer support and discussions.
+- Rewards system with gamification elements.
+- File upload support for audio and user-generated content.
+- Responsive design with Tailwind CSS and shadcn/ui components.
 
-## High-Level Overview
+## 🧱 Tech Stack
+| Layer      | Technologies                                                                 |
+| ---------- | ----------------------------------------------------------------------------- |
+| Frontend   | React, Vite, JavaScript (JSX), Tailwind + shadcn/ui, Axios, React Router      |
+| Backend    | Node.js, Express.js, MongoDB, Mongoose, JWT, Multer                          |
+| AI & Tools | Google Gemini API, Axios, Multer for uploads                                 |
 
+## 📁 Project Structure
 ```
-┌─────────────┐        ┌───────────────┐        ┌─────────────┐
-│   Frontend  │ <────> │    Backend    │ <────> │   External  │
-│  React App  │  HTTPS │ Node.js/Express│  APIs │  Services   │
-└─────────────┘        └───────────────┘        └─────────────┘
-       │                        │                       │
-       │                        │                       │
-╔══════╧══════╗       ╔═════════╧════════╗      ╔═══════╧═══════╗
-║ React +     ║       ║ MongoDB +        ║      ║  Google Gemini║
-║ Vite +      ║       ║ Express +        ║      ║  Payment APIs ║
-║ Tailwind    ║       ║ JWT Auth +       ║      ║  Audio APIs   ║
-║ shadcn/ui   ║       ║ Multer for Uploads║      ╚══════════════╝
-╚═════════════╝       ╚═══════════════════╝
-```
-
-- **Frontend**: React + Vite + Tailwind + shadcn/ui. Uses React Router for routing, Axios for API calls, AuthContext for authentication state. Provides responsive UI, authentication forms, dashboard, chatbot, diary, assessments, community, and rewards pages.
-- **Backend**: Node.js with Express.js, modular structure. Provides JWT authentication, API endpoints for chat, diary, assessments, community, payments, and user progress. Integrates with Google Gemini for AI responses, handles file uploads for audio, and manages user data.
-- **Database**: MongoDB with Mongoose ODM. Core entities: `User`, `Diary`, `MentalHealthReport`, `Community`, `RelaxationAudio`, `UserProgress`, `Class`.
-- **External Services**: Google Gemini API for AI chatbot, payment gateways for rewards/upgrades, audio hosting services.
-
----
-
-## Backend Modules
-
-```
-server/
-  config/        # database connection
-  controllers/   # business logic handlers
-  middlewares/   # auth middleware
-  models/        # Mongoose schemas
-  routes/        # API route definitions
-  seeds/         # data seeding scripts
-  uploads/       # file upload directory
-  utils/         # helpers (Gemini integration, recommendations)
-  server.js      # Express entrypoint
-```
-
-- `config/db.js`: MongoDB connection setup.
-- `middlewares/auth.middleware.js`: JWT verification for protected routes.
-- `models/`: User, Diary, MentalHealthReport, Community, RelaxationAudio, UserProgress, Class schemas.
-- `controllers/`: Handlers for auth, chat, classes, community, diary, mental health reports, payments, relaxation audio, user progress.
-- `routes/`: Route definitions for each feature, grouped by domain.
-- `utils/gemini.js`: Integration with Google Gemini API for AI responses.
-- `utils/recommendation.js`: Logic for personalized recommendations.
-- `seeds/`: Scripts to seed audio and classes data.
-- `server.js`: Main Express app setup, middleware, and route mounting.
-
-### Authentication Flow
-1. User registers/logs in via `/auth/register` or `/auth/login`.
-2. Backend validates credentials, issues JWT token.
-3. Token stored in client (localStorage), sent in headers for protected requests.
-4. Middleware verifies token on protected routes.
-
-### AI Integration
-- Chatbot uses Google Gemini API for responses.
-- Recommendations based on user progress and assessments.
-
-### File Uploads
-- Multer handles audio file uploads for relaxation features.
-- Files stored in `uploads/` directory.
-
----
-
-## Frontend Modules
-
-```
-client/src/
-  api/             # Axios client and API functions
-  components/      # shared UI components (Header, Footer, etc.)
-  contexts/        # AuthContext for state management
-  lib/             # utilities (utils.js)
-  pages/           # route-level components (Home, Login, Dashboard, etc.)
-  services/        # API service functions
-  utils/           # additional helpers
-  App.jsx          # main app component
-  main.jsx         # entry point
+mannmitra/
+├── client/
+│   ├── src/
+│   │   ├── api/           # Axios client and API functions
+│   │   ├── components/    # UI components (Header, Footer, etc.)
+│   │   ├── contexts/      # AuthContext for state management
+│   │   ├── lib/           # Utilities (utils.js)
+│   │   ├── pages/         # Route-level components (Home, Login, Dashboard, etc.)
+│   │   ├── services/      # API service functions
+│   │   └── utils/         # Additional helpers
+│   ├── public/            # Static assets
+│   └── package.json
+├── server/
+│   ├── config/           # Database connection
+│   ├── controllers/      # Business logic handlers
+│   ├── middlewares/      # Auth middleware
+│   ├── models/           # Mongoose schemas
+│   ├── routes/           # API route definitions
+│   ├── seeds/            # Data seeding scripts
+│   ├── uploads/          # File upload directory
+│   ├── utils/            # Helpers (Gemini integration, recommendations)
+│   └── server.js         # Express entrypoint
+├── vercel.json           # Deployment config
+└── docs/
+    └── ARCHITECTURE.md   # Architectural notes
 ```
 
-- Tailwind + shadcn/ui for styling and components.
-- React Router for navigation.
-- Axios for API calls, with interceptors for auth.
-- AuthContext manages user authentication state.
-- Pages include Home, Login, Register, Dashboard, Chatbot, Diary, Assessment, Community, Classes, Rewards, etc.
+## ⚙️ Prerequisites
+- Node.js ≥ 16
+- MongoDB
+- npm or yarn
 
-### Routing
-- `/` (Home)
-- `/login`, `/register`
-- `/dashboard`
-- `/chatbot`
-- `/diary`
-- `/assessment`
-- `/community`
-- `/classes`
-- `/rewards`
-- `/audio`
-- Protected routes require authentication.
+## 🔐 Environment Variables
+Copy and adjust for your environment:
 
-### State Management
-- `AuthContext`: Handles user login, logout, token storage.
+Backend (`server/.env`):
+- `PORT=5000`
+- `MONGODB_URI=mongodb://localhost:27017/mannmitra`
+- `JWT_SECRET=super-secret-string`
+- `GEMINI_API_KEY=your-gemini-api-key`
+- Payment API keys if applicable
 
-### Data Flow
-1. Auth pages call API for login/register, update context.
-2. Protected pages fetch data via API calls.
-3. Chatbot interacts with backend AI endpoint.
+Frontend (`client/.env`):
+- `VITE_API_URL=http://localhost:5000/api`
+
+## 🚀 Getting Started
+### 1. Backend
+```bash
+cd server
+npm install
+npm run seed  # optional: seed initial data
+npm run dev   # starts server on port 5000
+```
+
+### 2. Frontend
+```bash
+cd client
+npm install
+npm run dev   # http://localhost:5173
+```
+
+## 🧪 Example API Calls
+```http
+# Login
+POST /api/auth/login
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+# Get user progress
+GET /api/progress
+Authorization: Bearer <jwt-token>
+```
+
+Response excerpt:
+```json
+{
+  "userId": "user123",
+  "assessmentsCompleted": 5,
+  "diaryEntries": 20,
+  "chatSessions": 15,
+  "lastUpdated": "2025-12-19T10:00:00Z"
+}
+```
+
+## 🛡️ Security & Integrations
+- JWT tokens for authentication, stored securely in client.
+- Protected routes via auth middleware.
+- File uploads handled securely with Multer.
+- Google Gemini integration for AI chatbot responses.
+- MongoDB for flexible data storage.
+
+## 🧭 Additional Docs
+- See `ARCHITECTURE.md` for diagrams, module breakdowns, and deployment notes.
 
 ---
-
-## External Services
-
-- **Google Gemini**: For AI-powered chatbot responses.
-- **Payment Gateways**: For handling rewards and upgrades (e.g., Stripe or similar).
-- **Audio Hosting**: For storing and serving relaxation audio files.
-
----
-
-## Environment Variables
-
-- Backend `.env`:
-  - `MONGODB_URI`
-  - `JWT_SECRET`
-  - `GEMINI_API_KEY`
-  - `PAYMENT_API_KEY`
-  - `PORT`
-
-- Frontend `.env`:
-  - `VITE_API_URL`
-  - `VITE_GEMINI_API_KEY` (if needed)
-
----
-
-## Deployment Considerations
-
-- Containerize Node.js backend and React frontend.
-- Use HTTPS, secure environment variables.
-- Deploy to platforms like Vercel (for frontend) and Heroku/AWS (for backend).
-- Add logging, monitoring, and error handling.
-- Ensure compliance with mental health data privacy regulations.
-
----
-
-This architecture document informs the implementation across client and server folders.
+Happy supporting mental health! 🌟
