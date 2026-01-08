@@ -57,14 +57,16 @@ Despite the growing demand, current solutions fail to deliver **holistic mental 
 
 ## 💡 Our Solution: MannMitra
 
-MannMitra is a unified digital platform designed to bridge the treatment gap using AI and community support. We don't just track moods; we provide a companion.
+We designed **MannMitra** as a **unified digital mental wellness ecosystem**, especially for students.
 
-### Core Modules
-* **🤖 AI Chatbot with Voice:** Instant emotional support and stress-relief tips using Google Gemini and RAG models. [cite_start]It talks *to* you, not just *at* you[cite: 54, 163].
-* [cite_start]**📊 Mental Health Reports:** Generates personalized wellness assessments and tracks progress over time using simple questionnaires [cite: 58-60].
-* [cite_start]**🤝 Supportive Community:** A stigma-free environment to share stories and connect with others on similar journeys[cite: 61, 64].
-* [cite_start]**🧘 Self-Care Toolkit:** Includes a private digital diary, relaxation audio, and guided yoga/meditation sessions [cite: 65-68].
+### Core Design Principles:
+- ✅ **Accessible** – Low barrier to entry
+- ✅ **Stigma-free** – No judgment, full privacy
+- ✅ **Instant** – 24/7 AI availability
+- ✅ **Holistic** – Mind, emotions, habits, and community
+- ✅ **Engaging** – Gamification to improve consistency
 
+MannMitra acts as a **digital companion**, not just an app.
 ---
 
 ## 🏆 Why MannMitra is Better
