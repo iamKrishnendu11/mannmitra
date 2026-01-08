@@ -3,10 +3,56 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Footer = () => {
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { once: true, margin: "-100px" });
+
+  // Animation variants for different sliding directions
+  const slideFromLeft = {
+    hidden: { x: -50, opacity: 0 },
+    visible: (index) => ({
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  const slideFromRight = {
+    hidden: { x: 50, opacity: 0 },
+    visible: (index) => ({
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  const slideFromBottom = {
+    hidden: { y: 30, opacity: 0 },
+    visible: (index) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    })
+  };
+
+
   return (
-    <footer className="bg-gradient-to-r from-purple-950 via-purple-900 to-indigo-950 text-white border-t border-purple-800">
+    <footer ref={footerRef} className="bg-gradient-to-r from-purple-950 via-purple-900 to-indigo-950 text-white border-t border-purple-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
@@ -94,11 +140,37 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <motion.div 
+          className="w-full flex items-center justify-center mt-5 mb-5"
+          variants={slideFromBottom}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          custom={5}
+        >
+          <motion.span
+            className="flex items-center justify-centertext-[9.29vw] lg:text-[12.5vw] font-bold select-none leading-tight tracking-tighter cursor-pointer scale-[1.02]"
+            style={{
+              background:
+                "linear-gradient(180deg, #CE93D8 50%, #CE93D8 50%, #CE93D8 80%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "0 0 20px rgba(16, 0, 43, 0.3)"
+            }}
+            whileHover={{
+              textShadow: "0 0 30px rgba(60, 9,108, 0.9)"
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            MannMitra!
+            
+          </motion.span>
+        </motion.div>
 
         {/* Bottom Section */}
         <div className="border-t border-purple-800/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-purple-300 text-sm flex items-center gap-1">
-            © 2025 Algo Rhythm. Made with <Heart className="h-3 w-3 text-pink-400 fill-pink-400" /> in India.
+            © 2026 Algo Rhythm. Made with <Heart className="h-3 w-3 text-pink-400 fill-pink-400" /> in India.
           </p>
           <div className="flex space-x-6">
             <a href="/privacy-policy" className="text-purple-300 hover:text-white text-sm transition-colors duration-200">
