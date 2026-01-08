@@ -17,13 +17,23 @@
 
 ---
 
-## 🚨 The Crisis: Why This Problem Statement?
+## 🚨 1. The Problem We Are Solving
 
-We are facing a mental health emergency. [cite_start]Bright minds are fading before they get a chance to shine[cite: 38].
+India is facing a **silent mental health crisis among students**.
 
-* [cite_start]**Rising Suicide Rates:** According to NCRB data, a student commits suicide every hour in India[cite: 33]. [cite_start]In 2023 alone, the student suicide rate rose from 7.6% to 8.1%[cite: 31].
-* [cite_start]**Severe Shortage of Professionals:** India has only 0.3 to 0.75 psychiatrists per 100,000 people, vastly below the recommended 3 per 100,000[cite: 28].
-* [cite_start]**The Silent Struggle:** Social discrimination and the fear of being labeled "mentally ill" prevent millions from seeking help[cite: 45].
+- Academic pressure, anxiety, burnout, and emotional isolation are rapidly increasing
+- Mental health support is **expensive, inaccessible, and stigmatized**
+- Students often need **immediate emotional support**, not delayed appointments
+
+### Key Challenges:
+- 💸 Private therapy is unaffordable for most students
+- 🧑‍⚕️ Severe shortage of mental health professionals
+- 😶 Fear of judgment prevents open conversations
+- ⏳ No instant, 24/7 emotional assistance
+
+As a result, students are left alone during their most vulnerable moments
+
+---
 
 ## 📉 The Market Gap
 
