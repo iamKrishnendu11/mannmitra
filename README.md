@@ -143,6 +143,20 @@ Follow these steps to set up the project locally.
 
 ---
 
+## 🔑 Demo Access (Recommended for Judges)
+
+To skip the registration process and explore all features immediately, please use the following credentials:
+
+> **Email:** `mandakrishnendu1119@gmail.com`  
+> **Password:** `Krish@26`
+
+### 💳 Testing Premium Features
+* **Payment Gateway:** The payment system is currently disabled for the hackathon demo.
+* [cite_start]**Unlock Premium:** Simply clicking **"Upgrade to Premium"** will automatically enable all premium features, including personal therapist access and additional wellness content [cite: 69-71, 104].
+* [cite_start]**Confirmation:** Once upgraded, your dashboard will reflect your **Premium Member** status, granting full access to the MannMitra ecosystem [cite: 104-105].
+
+---
+
 ## 👥 Team Algo Rhythm
 
 [cite_start]We are a team of passionate developers and problem solvers [cite: 10-15].
