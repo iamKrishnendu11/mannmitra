@@ -75,16 +75,16 @@ Our plan focuses on **Holistic Well-being** rather than isolated features.
 
 | Feature | MannMitra Approach | The Benefit |
 | :--- | :--- | :--- |
-| **Accessibility** | 24/7 AI Companion | [cite_start]Students get instant help anytime, without waiting for appointments[cite: 113]. |
-| **Affordability** | Low-cost/Free Tier | [cite_start]Democratizes mental wellness tools for everyone, not just the wealthy[cite: 120]. |
-| **Engagement** | **Gamification (MannCoins)** | [cite_start]Combatting the low retention rates of health apps by rewarding users with coins for journaling and logging in [cite: 230-232]. |
-| **Privacy** | Stigma-Free Zone | [cite_start]Allows open expression without judgment or fear of social labeling[cite: 122]. |
+| **Accessibility** | 24/7 AI Companion | Students get instant help anytime, without waiting for appointments. |
+| **Affordability** | Low-cost/Free Tier | Democratizes mental wellness tools for everyone, not just the wealthy. |
+| **Engagement** | **Gamification (MannCoins)** | Combatting the low retention rates of health apps by rewarding users with coins for journaling and logging in . |
+| **Privacy** | Stigma-Free Zone | Allows open expression without judgment or fear of social labeling. |
 
 ---
 
 ## 🧱 Tech Stack
 
-[cite_start]We utilized a robust, modern stack to ensure scalability and performance [cite: 152-176].
+We utilized a robust, modern stack to ensure scalability and performance .
 
 ### **Frontend**
 ![React](https://img.shields.io/badge/-React.js-61DAFB?logo=react&logoColor=white)
@@ -152,14 +152,14 @@ To skip the registration process and explore all features immediately, please us
 
 ### 💳 Testing Premium Features
 * **Payment Gateway:** The payment system is currently disabled for the hackathon demo.
-* [cite_start]**Unlock Premium:** Simply clicking **"Upgrade to Premium"** will automatically enable all premium features, including personal therapist access and additional wellness content [cite: 69-71, 104].
-* [cite_start]**Confirmation:** Once upgraded, your dashboard will reflect your **Premium Member** status, granting full access to the MannMitra ecosystem [cite: 104-105].
+* **Unlock Premium:** Simply clicking **"Upgrade to Premium"** will automatically enable all premium features, including personal therapist access and additional wellness content .
+* **Confirmation:** Once upgraded, your dashboard will reflect your **Premium Member** status, granting full access to the MannMitra ecosystem .
 
 ---
 
 ## 👥 Team Algo Rhythm
 
-[cite_start]We are a team of passionate developers and problem solvers [cite: 10-15].
+We are a team of passionate developers and problem solvers .
 
 | Role | Name | Socials |
 | :--- | :--- | :--- |
@@ -174,4 +174,4 @@ To skip the registration process and explore all features immediately, please us
 
 ---
 
-> [cite_start]*"Bright minds are fading before they get a chance to shine. Let's change that."* [cite: 38]
+> *"Bright minds are fading before they get a chance to shine. Let's change that."* 
