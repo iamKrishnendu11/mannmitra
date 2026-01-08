@@ -118,6 +118,7 @@ Response excerpt:
 
 ## 🧭 Additional Docs
 - See `ARCHITECTURE.md` for diagrams, module breakdowns, and deployment notes.
+- See `MannMitra_Usability_Guidelines.md` for demo account details, and useability guidelines.
 
 ---
 Happy supporting mental health! 🌟
