@@ -37,12 +37,22 @@ As a result, students are left alone during their most vulnerable moments
 
 ## 📉 The Market Gap
 
-Why does a gap exist when there are already apps out there?
+Despite the growing demand, current solutions fail to deliver **holistic mental wellness**.
 
-1.  **Financial Barrier:** Private therapy is an elite luxury. [cite_start]Market analysis indicates average sessions cost between ₹1,200 and ₹4,000, making it inaccessible for most students[cite: 42, 43].
-2.  [cite_start]**Fragmented Solutions:** Existing apps often focus on only one area (like meditation) instead of offering complete support[cite: 146].
-3.  [cite_start]**Lack of Immediate Support:** Students often face long waiting times when they feel overwhelmed, with no immediate outlet for their emotions[cite: 138, 145].
+| Existing Solutions | Limitations |
+|-------------------|-------------|
+| Therapy apps | Expensive & appointment-based |
+| Meditation apps | Focus on only one aspect |
+| Helplines | Not personalized or continuous |
+| Community platforms | Lack privacy & safety |
 
+👉 **There is no single platform** that combines:
+- Instant AI support
+- Emotional assessments
+- Private self-reflection
+- Community interaction
+- Motivation & rewards
+  
 ---
 
 ## 💡 Our Solution: MannMitra
