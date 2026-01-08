@@ -100,8 +100,8 @@ Our plan focuses on **Holistic Well-being** rather than isolated features.
 ![ChromaDB](https://img.shields.io/badge/-ChromaDB-red)
 
 ### **AI & Integrations**
-* [cite_start]**AI Models:** Google Gemini, HuggingFace, RAG Architecture [cite: 162-166]
-* [cite_start]**Integrations:** Cloudinary (Media), Stripe (Payments), Clerk (Auth) [cite: 169-172]
+* **AI Models:** Google Gemini, HuggingFace, RAG Architecture
+* **Integrations:** Cloudinary (Media), Stripe (Payments), JWT (Auth)
 
 ---
 
@@ -126,8 +126,8 @@ Follow these steps to set up the project locally.
     cd server
     npm install
     # Create a .env file based on .env.example
-    # Add your MONGO_URI, GEMINI_API_KEY, and CLERK_KEYS
-    npm run dev
+    # Add your MONGO_URI, GEMINI_API_KEY,
+    npm run server
     ```
 
 3.  **Setup Frontend**
