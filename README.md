@@ -1,124 +1,141 @@
-# Mannmitra – Mental Health Support Platform
+<div align="center">
+  <img src="https://via.placeholder.com/150?text=MannMitra+Logo" alt="MannMitra Logo" width="120" height="120">
+  
+  # MannMitra
+  ### Your AI-Powered Digital Wellness Companion
 
-Mannmitra is a comprehensive mental health support platform that provides AI-powered chatbot assistance, journaling, assessments, community features, and relaxation audio. The project ships with a fully themed React experience (Tailwind + shadcn/ui) plus a production-ready Node.js/Express backend that handles JWT auth, MongoDB persistence, and Google Gemini integration.
+  <p align="center">
+    <a href="https://youtu.be/d4GZZzYRJCY"><strong>🎥 Watch the Live Demo</strong></a> &nbsp;|&nbsp; 
+    <a href="#-getting-started"><strong>🚀 Installation</strong></a> &nbsp;|&nbsp; 
+    <a href="#-team-algo-rhythm"><strong>👥 Team Algo Rhythm</strong></a>
+  </p>
 
-## ✨ Feature Highlights
-- Unified dashboard with progress tracking, assessment results, and personalized recommendations.
-- Dedicated pages for chatbot, diary, assessments, community, classes, and relaxation audio.
-- Auth flow with signup/login, JWT tokens, protected routes, and secure API endpoints.
-- AI chatbot powered by Google Gemini for conversational support.
-- Community features for peer support and discussions.
-- Rewards system with gamification elements.
-- File upload support for audio and user-generated content.
-- Responsive design with Tailwind CSS and shadcn/ui components.
-
-## 🧱 Tech Stack
-| Layer      | Technologies                                                                 |
-| ---------- | ----------------------------------------------------------------------------- |
-| Frontend   | React, Vite, JavaScript (JSX), Tailwind + shadcn/ui, Axios, React Router      |
-| Backend    | Node.js, Express.js, MongoDB, Mongoose, JWT, Multer                          |
-| AI & Tools | Google Gemini API, Axios, Multer for uploads                                 |
-
-## 📁 Project Structure
-```
-mannmitra/
-├── client/
-│   ├── src/
-│   │   ├── api/           # Axios client and API functions
-│   │   ├── components/    # UI components (Header, Footer, etc.)
-│   │   ├── contexts/      # AuthContext for state management
-│   │   ├── lib/           # Utilities (utils.js)
-│   │   ├── pages/         # Route-level components (Home, Login, Dashboard, etc.)
-│   │   ├── services/      # API service functions
-│   │   └── utils/         # Additional helpers
-│   ├── public/            # Static assets
-│   └── package.json
-├── server/
-│   ├── config/           # Database connection
-│   ├── controllers/      # Business logic handlers
-│   ├── middlewares/      # Auth middleware
-│   ├── models/           # Mongoose schemas
-│   ├── routes/           # API route definitions
-│   ├── seeds/            # Data seeding scripts
-│   ├── uploads/          # File upload directory
-│   ├── utils/            # Helpers (Gemini integration, recommendations)
-│   └── server.js         # Express entrypoint
-├── vercel.json           # Deployment config
-└── docs/
-    └── ARCHITECTURE.md   # Architectural notes
-```
-
-## ⚙️ Prerequisites
-- Node.js ≥ 16
-- MongoDB
-- npm or yarn
-
-## 🔐 Environment Variables
-Copy and adjust for your environment:
-
-Backend (`server/.env`):
-- `PORT=3000`
-- `MONGODB_URI=mongodb://localhost:27017/mannmitra`
-- `JWT_SECRET=super-secret-string`
-- `GEMINI_API_KEY=your-gemini-api-key`
-- Payment API keys if applicable
-
-Frontend (`client/.env`):
-- `VITE_API_URL=http://localhost:3000/api`
-
-- For More Details Visit Our .env.sample File in Client and Server Folder
-
-## 🚀 Getting Started
-### 1. Backend
-```bash
-cd server
-npm install
-npm run seed  # optional: seed initial data
-npm run build   # starts server on port 3000
-```
-
-### 2. Frontend
-```bash
-cd client
-npm install
-npm run dev   # http://localhost:5173
-```
-
-## 🧪 Example API Calls
-```http
-# Login
-POST /api/auth/login
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
-
-# Get user progress
-GET /api/progress
-Authorization: Bearer <jwt-token>
-```
-
-Response excerpt:
-```json
-{
-  "userId": "user123",
-  "assessmentsCompleted": 5,
-  "diaryEntries": 20,
-  "chatSessions": 15,
-  "lastUpdated": "2025-12-19T10:00:00Z"
-}
-```
-
-## 🛡️ Security & Integrations
-- JWT tokens for authentication, stored securely in client.
-- Protected routes via auth middleware.
-- File uploads handled securely with Multer.
-- Google Gemini integration for AI chatbot responses.
-- MongoDB for flexible data storage.
-
-## 🧭 Additional Docs
-- See `ARCHITECTURE.md` for diagrams, module breakdowns, and deployment notes.
-- See `MannMitra_Usability_Guidelines.md` for demo account details, and useability guidelines.
+  ![Status](https://img.shields.io/badge/Status-MVP%20Ready-success?style=flat-square)
+  ![Stack](https://img.shields.io/badge/Stack-MERN-blue?style=flat-square)
+  ![AI](https://img.shields.io/badge/AI-Google%20Gemini-orange?style=flat-square)
+</div>
 
 ---
-Happy supporting mental health! 🌟
+
+## 🚨 The Crisis: Why This Problem Statement?
+
+We are facing a mental health emergency. [cite_start]Bright minds are fading before they get a chance to shine[cite: 38].
+
+* [cite_start]**Rising Suicide Rates:** According to NCRB data, a student commits suicide every hour in India[cite: 33]. [cite_start]In 2023 alone, the student suicide rate rose from 7.6% to 8.1%[cite: 31].
+* [cite_start]**Severe Shortage of Professionals:** India has only 0.3 to 0.75 psychiatrists per 100,000 people, vastly below the recommended 3 per 100,000[cite: 28].
+* [cite_start]**The Silent Struggle:** Social discrimination and the fear of being labeled "mentally ill" prevent millions from seeking help[cite: 45].
+
+## 📉 The Market Gap
+
+Why does a gap exist when there are already apps out there?
+
+1.  **Financial Barrier:** Private therapy is an elite luxury. [cite_start]Market analysis indicates average sessions cost between ₹1,200 and ₹4,000, making it inaccessible for most students[cite: 42, 43].
+2.  [cite_start]**Fragmented Solutions:** Existing apps often focus on only one area (like meditation) instead of offering complete support[cite: 146].
+3.  [cite_start]**Lack of Immediate Support:** Students often face long waiting times when they feel overwhelmed, with no immediate outlet for their emotions[cite: 138, 145].
+
+---
+
+## 💡 Our Solution: MannMitra
+
+MannMitra is a unified digital platform designed to bridge the treatment gap using AI and community support. We don't just track moods; we provide a companion.
+
+### Core Modules
+* **🤖 AI Chatbot with Voice:** Instant emotional support and stress-relief tips using Google Gemini and RAG models. [cite_start]It talks *to* you, not just *at* you[cite: 54, 163].
+* [cite_start]**📊 Mental Health Reports:** Generates personalized wellness assessments and tracks progress over time using simple questionnaires [cite: 58-60].
+* [cite_start]**🤝 Supportive Community:** A stigma-free environment to share stories and connect with others on similar journeys[cite: 61, 64].
+* [cite_start]**🧘 Self-Care Toolkit:** Includes a private digital diary, relaxation audio, and guided yoga/meditation sessions [cite: 65-68].
+
+---
+
+## 🏆 Why MannMitra is Better
+
+Our plan focuses on **Holistic Well-being** rather than isolated features.
+
+| Feature | MannMitra Approach | The Benefit |
+| :--- | :--- | :--- |
+| **Accessibility** | 24/7 AI Companion | [cite_start]Students get instant help anytime, without waiting for appointments[cite: 113]. |
+| **Affordability** | Low-cost/Free Tier | [cite_start]Democratizes mental wellness tools for everyone, not just the wealthy[cite: 120]. |
+| **Engagement** | **Gamification (MannCoins)** | [cite_start]Combatting the low retention rates of health apps by rewarding users with coins for journaling and logging in [cite: 230-232]. |
+| **Privacy** | Stigma-Free Zone | [cite_start]Allows open expression without judgment or fear of social labeling[cite: 122]. |
+
+---
+
+## 🧱 Tech Stack
+
+[cite_start]We utilized a robust, modern stack to ensure scalability and performance [cite: 152-176].
+
+### **Frontend**
+![React](https://img.shields.io/badge/-React.js-61DAFB?logo=react&logoColor=white)
+![Tailwind](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
+![ShadCN](https://img.shields.io/badge/-ShadCN_UI-000000?logo=shadcnui&logoColor=white)
+![Spline](https://img.shields.io/badge/-Spline_3D-pink)
+![GSAP](https://img.shields.io/badge/-GSAP-green)
+
+### **Backend & Database**
+![Node](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/-Express.js-000000?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white)
+![ChromaDB](https://img.shields.io/badge/-ChromaDB-red)
+
+### **AI & Integrations**
+* [cite_start]**AI Models:** Google Gemini, HuggingFace, RAG Architecture [cite: 162-166]
+* [cite_start]**Integrations:** Cloudinary (Media), Stripe (Payments), Clerk (Auth) [cite: 169-172]
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to set up the project locally.
+
+### Prerequisites
+* Node.js (v16+)
+* MongoDB installed locally or a cloud URI
+
+### Installation
+
+1.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/yourusername/mannmitra.git](https://github.com/yourusername/mannmitra.git)
+    cd mannmitra
+    ```
+
+2.  **Setup Backend**
+    ```bash
+    cd server
+    npm install
+    # Create a .env file based on .env.example
+    # Add your MONGO_URI, GEMINI_API_KEY, and CLERK_KEYS
+    npm run dev
+    ```
+
+3.  **Setup Frontend**
+    ```bash
+    cd client
+    npm install
+    # Create a .env file
+    npm run dev
+    ```
+
+4.  **Access the App**
+    Open your browser and navigate to `http://localhost:5173`
+
+---
+
+## 👥 Team Algo Rhythm
+
+[cite_start]We are a team of passionate developers and problem solvers [cite: 10-15].
+
+| Role | Name | Socials |
+| :--- | :--- | :--- |
+| **Member** | **Prithvi Raj Thakur** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://instagram.com/) |
+| **Member** | **Krishnendu Mandal** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://instagram.com/) |
+| **Member** | **Sukhendu Chakraborty** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://instagram.com/) |
+| **Member** | **Sucharita Das** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://instagram.com/) |
+
+### Follow Algo Rhythm
+* 🌐 **Website:** [algorhythm.tech](https://google.com)
+* 📸 **Instagram:** [@algo_rhythm_team](https://instagram.com)
+
+---
+
+> [cite_start]*"Bright minds are fading before they get a chance to shine. Let's change that."* [cite: 38]
