@@ -72,7 +72,7 @@ Frontend (`client/.env`):
 cd server
 npm install
 npm run seed  # optional: seed initial data
-npm run dev   # starts server on port 5000
+npm run build   # starts server on port 5000
 ```
 
 ### 2. Frontend
