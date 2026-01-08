@@ -57,14 +57,16 @@ mannmitra/
 Copy and adjust for your environment:
 
 Backend (`server/.env`):
-- `PORT=5000`
+- `PORT=3000`
 - `MONGODB_URI=mongodb://localhost:27017/mannmitra`
 - `JWT_SECRET=super-secret-string`
 - `GEMINI_API_KEY=your-gemini-api-key`
 - Payment API keys if applicable
 
 Frontend (`client/.env`):
-- `VITE_API_URL=http://localhost:5000/api`
+- `VITE_API_URL=http://localhost:3000/api`
+
+- For More Details Visit Our .env.sample File in Client and Server Folder
 
 ## 🚀 Getting Started
 ### 1. Backend
@@ -72,7 +74,7 @@ Frontend (`client/.env`):
 cd server
 npm install
 npm run seed  # optional: seed initial data
-npm run build   # starts server on port 5000
+npm run build   # starts server on port 3000
 ```
 
 ### 2. Frontend
